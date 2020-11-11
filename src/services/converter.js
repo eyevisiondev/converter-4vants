@@ -1,8 +1,17 @@
 
+const fs = require('fs');
 const { exec } = require("child_process");
 
-converter = () =>{
-    exec("./src/build/PotreeConverter /home/victor/Documentos/EYEVISION/converter/test01 -o /opt/lampp/htdocs/potree/pointclouds/myconverter --material ELEVATION", (error, stdout, stderr) => {
+converter = (filename) =>{
+
+    fs.mkdir(path.join('/var/www/html/potree-senai/pointclouds/', `${filename}`), (err) => {
+        if (err) {
+            return console.error(err);
+        }
+        console.log('Directory created successfully!');
+    });
+
+    exec(`./src/build/PotreeConverter ./src/uploads/ -o /var/www/html/potree-senai/pointclouds/${filename} --material ELEVATION`, (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
             return;

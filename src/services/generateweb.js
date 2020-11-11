@@ -65,7 +65,7 @@ generateweb = (filename) => {
     
             // Sigeom
     
-            let url = "../pointclouds/${filename}/metadata.json";
+            let url = "/var/www/html/potree-senai/pointclouds/${filename}/metadata.json";
             Potree.loadPointCloud(url).then(e => {
                 let pointcloud = e.pointcloud;
                 let material = pointcloud.material;
@@ -87,14 +87,14 @@ generateweb = (filename) => {
     `;
 
     //test to mkdir in potree
-    fs.mkdir(path.join('./src/uploads/', `${filename}_project`), (err) => {
-        if (err) {
-            return console.error(err);
-        }
-        console.log('Directory created successfully!');
-    });
+    // fs.mkdir(path.join('./src/uploads/', `${filename}`), (err) => {
+    //     if (err) {
+    //         return console.error(err);
+    //     }
+    //     console.log('Directory created successfully!');
+    // });
 
-    fs.writeFile(`./src/uploads/${filename}_project/${filename}.html`, htmlContent, (error) => { /* handle error */ });
+    fs.writeFile(`./var/www/html/potree-senai/examples/${filename}.html`, htmlContent, (error) => { /* handle error */ });
 
 }
 
